@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tanya - Tempat Bertanya Tentang Cinta & Hubungan</title>
+    <style>
+        /* Reset dan Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary: #ff6b8b;
+            --secondary: #8a6bff;
+            --accent: #6bc9ff;
+            --light: #fff5f7;
+            --dark: #333333;
+            --text: #444444;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        body {
+            background-color: #f9f9f9;
+            color: var(--text);
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 1rem 0;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo span {
+            color: var(--light);
+            margin-left: 5px;
+        }
+        
+        .logo-icon {
+            background-color: white;
+            color: var(--primary);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav li {
+            margin-left: 1.5rem;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+        
+        nav a:hover {
+            opacity: 0.8;
+        }
+        
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(255, 107, 139, 0.8), rgba(138, 107, 255, 0.8)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%23ffffff" opacity="0.1"/></svg>');
+            background-size: cover;
+            color: white;
+            padding: 5rem 0;
+            text-align: center;
+            border-radius: 0 0 30px 30px;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: white;
+            color: var(--primary);
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: var(--shadow);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Categories Section */
+        .categories {
+            padding: 4rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--dark);
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            border-radius: 2px;
+        }
+        
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+        
+        .category-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s;
+        }
+        
+        .category-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .category-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 1.8rem;
+        }
+        
+        .cinta {
+            background-color: rgba(255, 107, 139, 0.1);
+            color: var(--primary);
+        }
+        
+        .hubungan {
+            background-color: rgba(138, 107, 255, 0.1);
+            color: var(--secondary);
+        }
+        
+        .umum {
+            background-color: rgba(107, 201, 255, 0.1);
+            color: var(--accent);
+        }
+        
+        .category-card h3 {
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+        
+        /* Featured Questions */
+        .featured-questions {
+            background-color: var(--light);
+            padding: 4rem 0;
+            border-radius: 30px 30px 0 0;
+        }
+        
+        .question-list {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .question-item {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow);
+            border-left: 5px solid var(--primary);
+        }
+        
+        .question-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            color: #777;
+            margin-bottom: 0.5rem;
+        }
+        
+        .question-topic {
+            background-color: var(--light);
+            color: var(--primary);
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+        
+        /* About Section */
+        .about {
+            padding: 4rem 0;
+        }
+        
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        .about-text h2 {
+            margin-bottom: 1.5rem;
+            color: var(--dark);
+        }
+        
+        .about-image {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            height: 300px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            box-shadow: var(--shadow);
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--secondary), var(--accent));
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+            border-radius: 30px;
+            margin: 2rem 0;
+        }
+        
+        .cta-section h2 {
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 3rem 0 1.5rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-column h3 {
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: var(--primary);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-column a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column a:hover {
+            color: white;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid #444;
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .logo {
+                margin-bottom: 1rem;
+            }
+            
+            nav ul {
+                flex-direction: column;
+            }
+            
+            nav li {
+                margin: 0.5rem 0;
+            }
+            
+            .mobile-menu {
+                display: block;
+                position: absolute;
+                top: 1rem;
+                right: 1rem;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-image {
+                height: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">?</div>
+                    Tanya<span>.id</span>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#">Beranda</a></li>
+                        <li><a href="#">Tanya</a></li>
+                        <li><a href="#">Kategori</a></li>
+                        <li><a href="#">Tentang</a></li>
+                        <li><a href="#">Kontak</a></li>
+                    </ul>
+                </nav>
+                <div class="mobile-menu">☰</div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Temukan Jawaban untuk Pertanyaan Hatimu</h1>
+            <p>Tanya adalah platform di mana Anda bisa bertanya tentang cinta, hubungan, dan berbagai hal umum lainnya. Dapatkan saran dari komunitas yang peduli atau bagikan pengalaman Anda untuk membantu orang lain.</p>
+            <a href="#" class="cta-button">Ajukan Pertanyaan</a>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories">
+        <div class="container">
+            <h2 class="section-title">Kategori Pertanyaan</h2>
+            <div class="category-grid">
+                <div class="category-card">
+                    <div class="category-icon cinta">❤️</div>
+                    <h3>Cinta & Romansa</h3>
+                    <p>Pertanyaan seputar perasaan, jatuh cinta, pacaran, dan segala hal romantis lainnya. Dari masalah hati hingga kencan pertama.</p>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon hubungan">👥</div>
+                    <h3>Hubungan & Keluarga</h3>
+                    <p>Diskusi tentang hubungan dengan pasangan, keluarga, teman, dan rekan kerja. Mengatasi konflik dan membangun ikatan yang sehat.</p>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon umum">💭</div>
+                    <h3>Pertanyaan Umum</h3>
+                    <p>Topik lainnya seputar kehidupan sehari-hari, karir, pengembangan diri, dan berbagai hal yang ingin Anda ketahui pendapat orang lain.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Questions -->
+    <section class="featured-questions">
+        <div class="container">
+            <h2 class="section-title">Pertanyaan Populer</h2>
+            <div class="question-list">
+                <div class="question-item">
+                    <div class="question-meta">
+                        <span class="question-topic">Cinta</span>
+                        <span>15 Jawaban</span>
+                    </div>
+                    <h3>Bagaimana cara mengetahui jika seseorang benar-benar mencintai kita?</h3>
+                    <p>Sudah 6 bulan saya menjalin hubungan dengan pacar saya. Kadang saya ragu apakah dia benar-benar mencintai saya atau hanya memanfaatkan saya. Tanda-tanda apa yang bisa saya perhatikan?</p>
+                </div>
+                <div class="question-item">
+                    <div class="question-meta">
+                        <span class="question-topic">Hubungan</span>
+                        <span>22 Jawaban</span>
+                    </div>
+                    <h3>Apakah normal jika pasangan sering bertengkar tentang hal kecil?</h3>
+                    <p>Setiap minggu kami selalu bertengkar tentang hal-hal sepele seperti siapa yang harus mencuci piring atau mengatur suhu AC. Apakah ini tanda hubungan kami tidak sehat?</p>
+                </div>
+                <div class="question-item">
+                    <div class="question-meta">
+                        <span class="question-topic">Umum</span>
+                        <span>31 Jawaban</span>
+                    </div>
+                    <h3>Bagaimana cara mengatasi rasa takut akan penolakan?</h3>
+                    <p>Saya sering menghindari peluang baru karena takut ditolak atau gagal. Ini sudah mempengaruhi karir dan kehidupan sosial saya. Ada saran untuk mengatasi ketakutan ini?</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>Tentang Tanya.id</h2>
+                    <p>Tanya.id adalah platform komunitas yang dibuat dengan tujuan membantu orang-orang menemukan jawaban untuk pertanyaan mereka tentang cinta, hubungan, dan berbagai aspek kehidupan lainnya.</p>
+                    <p>Kami percaya bahwa berbagi pengalaman dan perspektif dapat membantu seseorang melihat masalah dari sudut pandang yang berbeda dan menemukan solusi yang tepat.</p>
+                    <p>Di sini, Anda dapat bertanya secara anonim, berbagi cerita, atau membantu orang lain dengan memberikan saran berdasarkan pengalaman pribadi Anda. Setiap pertanyaan dihargai dan setiap jawaban dihargai.</p>
+                    <p>Komunitas kami terdiri dari orang-orang dengan berbagai latar belakang dan pengalaman hidup, sehingga Anda akan mendapatkan perspektif yang beragam untuk setiap pertanyaan yang Anda ajukan.</p>
+                </div>
+                <div class="about-image">
+                    TANYA<br>Komunitas
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Punya Pertanyaan?</h2>
+            <p>Jangan ragu untuk bertanya. Komunitas kami siap membantu Anda menemukan jawaban.</p>
+            <a href="#" class="cta-button" style="background-color: white; color: var(--secondary);">Mulai Bertanya Sekarang</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Tanya.id</h3>
+                    <p>Platform bertanya tentang cinta, hubungan, dan kehidupan sehari-hari. Temukan jawaban dan berbagi pengalaman dengan komunitas kami.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Kategori</h3>
+                    <ul>
+                        <li><a href="#">Cinta & Romansa</a></li>
+                        <li><a href="#">Hubungan & Keluarga</a></li>
+                        <li><a href="#">Pertanyaan Umum</a></li>
+                        <li><a href="#">Pengembangan Diri</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Tautan Cepat</h3>
+                    <ul>
+                        <li><a href="#">Beranda</a></li>
+                        <li><a href="#">Ajukan Pertanyaan</a></li>
+                        <li><a href="#">Pertanyaan Populer</a></li>
+                        <li><a href="#">Tentang Kami</a></li>
+                        <li><a href="#">Kontak</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Kebijakan</h3>
+                    <ul>
+                        <li><a href="#">Syarat & Ketentuan</a></li>
+                        <li><a href="#">Kebijakan Privasi</a></li>
+                        <li><a href="#">Panduan Komunitas</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2025 Tanya.id - Semua hak dilindungi
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.mobile-menu').addEventListener('click', function() {
+            document.querySelector('nav ul').classList.toggle('show');
+        });
+    </script>
+</body>
+</html>
